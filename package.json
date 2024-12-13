@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "dev": "webpack --mode development --watch ./leadmanager/frontend/src/index.js --output-path ./leadmanager/frontend/static/frontend",
-      "build": "webpack --mode production --entry ./leadmanager/frontend/src/index.js --output-path ./leadmanager/frontend/static/frontend"
+    "dev": "webpack --mode development --watch ./leadmanager/frontend/src/index.js --output-path ./leadmanager/frontend/static/frontend",
+    "build": "webpack --mode production --entry ./leadmanager/frontend/src/index.js --output-path ./leadmanager/frontend/static/frontend"
   },
   "keywords": [],
   "author": "",
@@ -20,8 +20,13 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "axios": "^1.7.8",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.1.2",
+    "redux": "^5.0.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^3.1.0"
   }
 }
