@@ -8,6 +8,12 @@ import AlertTemplate from "react-alert-template-basic";
 import Store from "../store";
 import store from "../store";
 import Alerts from "./layout/Alerts";
+import { HashRouter as Router, Route, Routes } from
+        "react-router-dom"
+import Login from "./accounts/Login";
+import Register from "./accounts/Register";
+import PrivateRoute from "./common/PrivateRoute";
+import {loadUser} from "../actions/auth";
 
 const alertOptions = {
     timeout: 3000,
@@ -15,17 +21,30 @@ const alertOptions = {
 }
 
 class App extends Component {
-        render() {
+    componentDidMount() {
+        store.dispatch(loadUser())
+    }
+
+    render() {
             return (
                 <Provider store={store}>
                     <AlertProvider template={AlertTemplate} {...alertOptions}>
-                        <Fragment>
-                            <Header/>
-                            <Alerts />
-                            <div className="container">
-                                 <Dashboard/>
-                            </div>
-                        </Fragment>
+                        <Router>
+                            <Fragment>
+                                <Header/>
+                                <Alerts />
+                                <div className="container">
+                                    <Routes>
+                                       <Route exact path='/' element={<PrivateRoute/>}>
+                                            <Route exact path='/' element={<Dashboard/>}/>
+                                        </Route>
+                                        <Route exact path="/login" Component={Login} />
+                                        <Route exact path="/register" Component={Register} />
+                                    </Routes>
+
+                                </div>
+                            </Fragment>
+                        </Router>
                     </AlertProvider>
                 </Provider>
 
